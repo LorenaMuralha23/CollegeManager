@@ -31,7 +31,7 @@ public class StudentStcDashboard extends javax.swing.JPanel {
         subtitleLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         sideMenuPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        sideMenuLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         subtitleLabel = new javax.swing.JLabel();
         loginLabel1 = new javax.swing.JLabel();
@@ -79,17 +79,17 @@ public class StudentStcDashboard extends javax.swing.JPanel {
         setBackground(new java.awt.Color(241, 234, 255));
         setPreferredSize(new java.awt.Dimension(1100, 800));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sideMenusideMenuImg.png"))); // NOI18N
+        sideMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sideMenusideMenuImg.png"))); // NOI18N
 
         javax.swing.GroupLayout sideMenuPanelLayout = new javax.swing.GroupLayout(sideMenuPanel);
         sideMenuPanel.setLayout(sideMenuPanelLayout);
         sideMenuPanelLayout.setHorizontalGroup(
             sideMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sideMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sideMenuPanelLayout.setVerticalGroup(
             sideMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addComponent(sideMenuLabel)
         );
 
         jPanel1.setBackground(new java.awt.Color(241, 234, 255));
@@ -185,7 +185,7 @@ public class StudentStcDashboard extends javax.swing.JPanel {
                 .addComponent(subtitleLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(subtitleLabel14)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         statisticPanel6.setBackground(new java.awt.Color(226, 213, 246));
@@ -215,7 +215,7 @@ public class StudentStcDashboard extends javax.swing.JPanel {
                 .addComponent(subtitleLabel17)
                 .addGap(18, 18, 18)
                 .addComponent(subtitleLabel18)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         subtitleLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -260,7 +260,7 @@ public class StudentStcDashboard extends javax.swing.JPanel {
                 .addComponent(subtitleLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(subtitleLabel21)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         statisticPanel1.setBackground(new java.awt.Color(226, 213, 246));
@@ -453,18 +453,17 @@ public class StudentStcDashboard extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel loginLabel1;
     private javax.swing.JLabel loginLabel2;
     private javax.swing.JLabel loginLabel3;
+    private javax.swing.JLabel sideMenuLabel;
     private javax.swing.JPanel sideMenuPanel;
     private javax.swing.JPanel statisticPanel;
     private javax.swing.JPanel statisticPanel1;
     private javax.swing.JPanel statisticPanel2;
     private javax.swing.JPanel statisticPanel4;
-    private javax.swing.JPanel statisticPanel5;
     private javax.swing.JPanel statisticPanel6;
     private javax.swing.JPanel statisticPanel8;
     private javax.swing.JLabel subtitleLabel;
@@ -472,8 +471,6 @@ public class StudentStcDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel subtitleLabel10;
     private javax.swing.JLabel subtitleLabel11;
     private javax.swing.JLabel subtitleLabel14;
-    private javax.swing.JLabel subtitleLabel15;
-    private javax.swing.JLabel subtitleLabel16;
     private javax.swing.JLabel subtitleLabel17;
     private javax.swing.JLabel subtitleLabel18;
     private javax.swing.JLabel subtitleLabel2;
