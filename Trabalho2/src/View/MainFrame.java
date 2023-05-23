@@ -16,6 +16,11 @@ public class MainFrame extends javax.swing.JFrame {
     public static RecordGradeView recordGradePanel;
     public static ClassDetailsView classDetailsPanel;
 
+    //Students panels
+    public static StudentsDashboardView studentsDashboardPanel;
+    public static MsgStudentView msgStudentViewPanel;
+    
+    
     public MainFrame() {
         initComponents();
 
@@ -27,10 +32,12 @@ public class MainFrame extends javax.swing.JFrame {
 //        crtClassPanel = new CreateClassView();
 //        scheduleExamPanel = new ScheduleExamView();
 //        recordGradePanel = new RecordGradeView();
-        classDetailsPanel = new ClassDetailsView();
+//        classDetailsPanel = new ClassDetailsView();
+//        studentsDashboardPanel = new StudentsDashboardView();
+        msgStudentViewPanel = new MsgStudentView();
     
 
-        this.add(classDetailsPanel);
+        this.add(msgStudentViewPanel);
         this.pack();
     }
 
