@@ -19,6 +19,8 @@ public class RecordGradeView extends javax.swing.JPanel {
         initComponents();
         studentsTable.getTableHeader().setBackground(new Color(167, 135, 226));
         studentsTable.getTableHeader().setForeground(new Color(255,255,255));
+        
+        
     }
 
     /**

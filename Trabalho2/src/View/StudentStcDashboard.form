@@ -96,11 +96,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="sideMenuLabel">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Images/sideMenusideMenuImg.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -140,7 +135,7 @@
                                           <Component id="statisticPanel6" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="109" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>

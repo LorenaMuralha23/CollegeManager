@@ -53,7 +53,6 @@ public class ScheduleExamView extends javax.swing.JPanel {
         loginLabel3 = new javax.swing.JLabel();
         teacherField = new javax.swing.JTextField();
         teacherLabel = new javax.swing.JLabel();
-        dateField = new javax.swing.JTextField();
         dateLabel = new javax.swing.JLabel();
         subjectLabel = new javax.swing.JLabel();
         subjectComboBox = new javax.swing.JComboBox<>();
@@ -284,14 +283,6 @@ public class ScheduleExamView extends javax.swing.JPanel {
         teacherLabel.setForeground(new java.awt.Color(42, 8, 69));
         teacherLabel.setText("Teacher:");
 
-        dateField.setBackground(new java.awt.Color(158, 107, 255));
-        dateField.setBorder(null);
-        dateField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateFieldActionPerformed(evt);
-            }
-        });
-
         dateLabel.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         dateLabel.setForeground(new java.awt.Color(42, 8, 69));
         dateLabel.setText("Date:");
@@ -387,10 +378,8 @@ public class ScheduleExamView extends javax.swing.JPanel {
                             .addComponent(teacherLabel)
                             .addComponent(teacherField, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dateLabel)
-                            .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(96, 96, 96))
+                        .addComponent(dateLabel)
+                        .addGap(243, 243, 243))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(loginLabel3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -427,8 +416,7 @@ public class ScheduleExamView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(dateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(loginLabel3)
                         .addGap(18, 18, 18)
@@ -517,10 +505,6 @@ public class ScheduleExamView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_teacherFieldActionPerformed
 
-    private void dateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateFieldActionPerformed
-
     private void subjectComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_subjectComboBoxActionPerformed
@@ -554,7 +538,6 @@ public class ScheduleExamView extends javax.swing.JPanel {
     private javax.swing.JLabel confPasswordLabel;
     private javax.swing.JPasswordField confirmPswField;
     private javax.swing.JButton createNewAccBtn;
-    private javax.swing.JTextField dateField;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel emailAddresLabel;
     private javax.swing.JTextField emailField;

@@ -8,9 +8,13 @@ public class StudentModel extends UserModel{
     
     private MessageModel teacherMsg;
     
-    private float totalGrade;
+    private float averange;
     private ArrayList<Float> examsGrades;
-
+    
+    public StudentModel(String firstName, String userName, String emailAddress, String password) {
+        super(firstName, userName, emailAddress, password, 45678 , 2);
+    }
+    
     public ArrayList<ClassModel> getClassesList() {
         return classesList;
     }
@@ -27,12 +31,20 @@ public class StudentModel extends UserModel{
         this.teacherMsg = teacherMsg;
     }
 
-    public float getTotalGrade() {
-        return totalGrade;
+    public float getAverange() {
+        return averange;
     }
 
-    public void setTotalGrade(float totalGrade) {
-        this.totalGrade = totalGrade;
+    public void setAverange(float averange) {
+        this.averange = averange;
+    }
+
+    public float getExamGrade(int index) {
+        return examsGrades.get(index);
+    }
+
+    public void setExamGrade(ArrayList<Float> examsGrades) {
+        this.examsGrades = examsGrades;
     }
 
     public ArrayList<Float> getExamsGrades() {
@@ -42,7 +54,8 @@ public class StudentModel extends UserModel{
     public void setExamsGrades(ArrayList<Float> examsGrades) {
         this.examsGrades = examsGrades;
     }
-
+    
+    
     
     
     

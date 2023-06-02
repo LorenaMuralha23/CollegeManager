@@ -1,16 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package View;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
-/**
- *
- * @author USER
- */
 public class StudentStcDashboard extends javax.swing.JPanel {
     
    
@@ -78,8 +68,6 @@ public class StudentStcDashboard extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(241, 234, 255));
         setPreferredSize(new java.awt.Dimension(1100, 800));
-
-        sideMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sideMenusideMenuImg.png"))); // NOI18N
 
         javax.swing.GroupLayout sideMenuPanelLayout = new javax.swing.GroupLayout(sideMenuPanel);
         sideMenuPanel.setLayout(sideMenuPanelLayout);
@@ -360,7 +348,7 @@ public class StudentStcDashboard extends javax.swing.JPanel {
                                         .addComponent(statisticPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(148, 148, 148)
                                         .addComponent(statisticPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 37, Short.MAX_VALUE)))
+                                .addGap(0, 109, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

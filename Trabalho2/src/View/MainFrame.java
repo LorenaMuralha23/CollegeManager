@@ -1,24 +1,13 @@
 package View;
 
 import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MainFrame extends javax.swing.JFrame {
 
-    //User's panel
-    public static LoginView loginPanel;
-    public static CreateAccountView crtAccountPanel;
-
-    //Teacher's panels
-    public static TeacherDashboardView teacherDashboardPanel;
-    public static CreateClassView crtClassPanel;
-    public static ScheduleExamView scheduleExamPanel;
-    public static RecordGradeView recordGradePanel;
-    public static ClassDetailsView classDetailsPanel;
-
-    //Students panels
-    public static StudentsDashboardView studentsDashboardPanel;
-    public static MsgStudentView msgStudentViewPanel;
+   
     
     
     public MainFrame() {
@@ -26,19 +15,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         this.setLayout(new BorderLayout());
 
-//        loginPanel = new LoginView();
-//        crtAccountPanel = new CreateAccountView();
-//        teacherDashboardPanel = new TeacherDashboardView();
-//        crtClassPanel = new CreateClassView();
-//        scheduleExamPanel = new ScheduleExamView();
-//        recordGradePanel = new RecordGradeView();
-//        classDetailsPanel = new ClassDetailsView();
-//        studentsDashboardPanel = new StudentsDashboardView();
-        msgStudentViewPanel = new MsgStudentView();
-    
-
-        this.add(msgStudentViewPanel);
-        this.pack();
     }
 
     @SuppressWarnings("unchecked")
@@ -94,7 +70,15 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void showErrorMsg(String msg){
+        JOptionPane.showMessageDialog(null, msg, "Threre was a problem", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void showSucessfullMsg(String msg){
+        ImageIcon icon = new ImageIcon("C:\\Users\\alunolages\\Documents\\Lorena_Muralha\\DOO\\CollegeManager\\CollegeManager\\Trabalho2\\src\\Images\\successMsgIcon.png");
+        JOptionPane.showMessageDialog(null, msg, "Success", JOptionPane.INFORMATION_MESSAGE, icon);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

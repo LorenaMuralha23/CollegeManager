@@ -7,7 +7,7 @@ public class ExamModel {
     private int totalValue;
     private int weightOfQuestion;
     
-    private float valueOfQuestion;
+    private float valueOfEachQuestion;
     
     private TeacherModel teacher;
     
@@ -48,12 +48,12 @@ public class ExamModel {
         this.weightOfQuestion = weightOfQuestion;
     }
 
-    public float getValueOfQuestion() {
-        return valueOfQuestion;
+    public float getValueOfEachQuestion() {
+        return valueOfEachQuestion;
     }
 
-    public void setValueOfQuestion(float valueOfQuestion) {
-        this.valueOfQuestion = valueOfQuestion;
+    public void setValueOfEachQuestion(float valueOfQuestion) {
+        this.valueOfEachQuestion = valueOfQuestion;
     }
 
     public TeacherModel getTeacher() {

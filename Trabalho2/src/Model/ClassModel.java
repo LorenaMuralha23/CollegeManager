@@ -2,19 +2,31 @@ package Model;
 
 import java.util.ArrayList;
 
-public class ClassModel {
+public class ClassModel{
     
     private String name;
     private String subject;
     
-    private TeacherModel teacher;
+    private UserModel teacher;
     
     private ArrayList<StudentModel> studentsList;
     private ArrayList<ExamModel> examList;
    
     private float totalAverange;
     private float minimumrAverange;
+    
+    private int calcType; //1 -> normal averange // 2 -> weighted averange
 
+    public ClassModel(String name, String subject, UserModel teacher, float minimumrAverange, int calcType) {
+        this.name = name;
+        this.subject = subject;
+        this.teacher = teacher;
+        this.minimumrAverange = minimumrAverange;
+        this.calcType = calcType;
+    }
+
+    
+    
     public String getName() {
         return name;
     }
@@ -31,7 +43,7 @@ public class ClassModel {
         this.subject = subject;
     }
 
-    public TeacherModel getTeacher() {
+    public UserModel getTeacher() {
         return teacher;
     }
 
@@ -70,6 +82,13 @@ public class ClassModel {
     public void setMinimumrAverange(float minimumrAverange) {
         this.minimumrAverange = minimumrAverange;
     }
+
+    @Override
+    public String toString() {
+        return "ClassModel{" + "\nName: " + name + "\nSubject: " + subject + "\nTeacher: " + teacher + "\nStudents List: " + studentsList 
+                + "\nExam List: " + examList + "\nTotal Averange: " + totalAverange + "\nMinimum Averange: " + minimumrAverange + "\nCalc Type: " + calcType + "\n" + '}';
+    }
+    
     
     
 }
