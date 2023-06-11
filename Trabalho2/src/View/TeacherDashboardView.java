@@ -16,14 +16,6 @@ public class TeacherDashboardView extends javax.swing.JPanel {
         startComboBox();
     }
 
-    /*
-    public void addClientesLista(){
-        clientesComboBox.removeAllItems();
-        for(Cliente c : listaClientes){
-            clientesComboBox.addItem(c.getNome());
-        }
-    }
-     */
     public void startComboBox() {//-> perguntar para o professor
         UserModel userLogged = Main.controller.getUserLogged();
         classesComboBox.removeAllItems();
@@ -74,6 +66,7 @@ public class TeacherDashboardView extends javax.swing.JPanel {
         scheduleExamBtn = new javax.swing.JLabel();
         viewClassBtn = new javax.swing.JLabel();
         addClassBtn = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(241, 234, 255));
         setPreferredSize(new java.awt.Dimension(1100, 800));
@@ -214,7 +207,7 @@ public class TeacherDashboardView extends javax.swing.JPanel {
                     .addGroup(statisticPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(subtitleLabel7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         statisticPanel2.setBackground(new java.awt.Color(226, 213, 246));
@@ -262,7 +255,7 @@ public class TeacherDashboardView extends javax.swing.JPanel {
                     .addGroup(statisticPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(subtitleLabel10)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         statisticPanel3.setBackground(new java.awt.Color(198, 167, 250));
@@ -290,26 +283,26 @@ public class TeacherDashboardView extends javax.swing.JPanel {
             .addGroup(statisticPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(subtitleLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statisticPanel3Layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(subtitleLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(subtitleLabel13)
-                .addGap(70, 70, 70))
+                .addGap(67, 67, 67))
         );
         statisticPanel3Layout.setVerticalGroup(
             statisticPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statisticPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(subtitleLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(statisticPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(subtitleLabel12)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statisticPanel3Layout.createSequentialGroup()
                         .addComponent(subtitleLabel13)
                         .addGap(23, 23, 23)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         loginLabel3.setFont(new java.awt.Font("Arial", 0, 44)); // NOI18N
@@ -322,12 +315,22 @@ public class TeacherDashboardView extends javax.swing.JPanel {
         recordGradeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recordGradeIconBtn.png"))); // NOI18N
         recordGradeBtn.setText("Record Grades");
         recordGradeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        recordGradeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recordGradeBtnMouseClicked(evt);
+            }
+        });
 
         viewStudentsBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         viewStudentsBtn.setForeground(new java.awt.Color(42, 8, 69));
         viewStudentsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/classStatisticIconBtn.png"))); // NOI18N
         viewStudentsBtn.setText("View Students Statistics");
         viewStudentsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viewStudentsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewStudentsBtnMouseClicked(evt);
+            }
+        });
 
         scheduleExamBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         scheduleExamBtn.setForeground(new java.awt.Color(42, 8, 69));
@@ -345,6 +348,11 @@ public class TeacherDashboardView extends javax.swing.JPanel {
         viewClassBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/viewClassIconBtn.png"))); // NOI18N
         viewClassBtn.setText("View class details");
         viewClassBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viewClassBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewClassBtnMouseClicked(evt);
+            }
+        });
 
         addClassBtn.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         addClassBtn.setForeground(new java.awt.Color(42, 8, 69));
@@ -357,28 +365,41 @@ public class TeacherDashboardView extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(42, 8, 69));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logOutIcon.png"))); // NOI18N
+        jLabel2.setText("Log Out");
+        jLabel2.setToolTipText("");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(subtitleLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loginLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(subtitleLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(classesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(classesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(addClassBtn))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(99, 99, 99)
                                 .addComponent(statisticPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(statisticPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(statisticPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -393,42 +414,51 @@ public class TeacherDashboardView extends javax.swing.JPanel {
                                     .addComponent(viewClassBtn)
                                     .addComponent(recordGradeBtn))
                                 .addGap(182, 182, 182)))
-                        .addGap(0, 181, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(78, 189, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(subtitleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(25, 25, 25)
                 .addComponent(subtitleLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginLabel2)
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subtitleLabel)
-                    .addComponent(classesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addClassBtn))
-                .addGap(24, 24, 24)
-                .addComponent(loginLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statisticPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(loginLabel2)
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(subtitleLabel)
+                            .addComponent(classesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addClassBtn))
+                        .addGap(24, 24, 24)
+                        .addComponent(loginLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(statisticPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(statisticPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(statisticPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(statisticPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, Short.MAX_VALUE))
-                .addGap(38, 38, 38)
+                    .addComponent(statisticPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statisticPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(loginLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scheduleExamBtn)
                     .addComponent(viewClassBtn))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewStudentsBtn)
                     .addComponent(recordGradeBtn))
-                .addGap(124, 124, 124))
+                .addGap(44, 44, 44)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -442,8 +472,8 @@ public class TeacherDashboardView extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(sideMenuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -461,11 +491,34 @@ public class TeacherDashboardView extends javax.swing.JPanel {
         Main.controller.showScreen(Main.controller.scheduleExamPanel);
     }//GEN-LAST:event_scheduleExamBtnMouseClicked
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        Main.controller.logOut();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void viewClassBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewClassBtnMouseClicked
+        ClassModel classToDetails = Main.controller.findClassByName(classesComboBox.getSelectedItem().toString());
+        Main.controller.classDetailsPanel = new ClassDetailsView(classToDetails);
+        Main.controller.showScreen(Main.controller.classDetailsPanel);
+    }//GEN-LAST:event_viewClassBtnMouseClicked
+
+    private void viewStudentsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewStudentsBtnMouseClicked
+        Main.controller.studentStcDashboardView = new StudentStcDashboardView();
+        Main.controller.showScreen(Main.controller.studentStcDashboardView);
+    }//GEN-LAST:event_viewStudentsBtnMouseClicked
+
+    private void recordGradeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recordGradeBtnMouseClicked
+        ClassModel classToDetails = Main.controller.findClassByName(classesComboBox.getSelectedItem().toString());
+        Main.controller.teacherDashboardPanel = null;
+        Main.controller.recordGradePanel = new RecordGradeView(classToDetails);
+        Main.controller.showScreen(Main.controller.recordGradePanel);
+    }//GEN-LAST:event_recordGradeBtnMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addClassBtn;
     private javax.swing.JComboBox<String> classesComboBox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel loginLabel1;
     private javax.swing.JLabel loginLabel2;

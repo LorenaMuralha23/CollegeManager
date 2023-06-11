@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 public class MainFrame extends javax.swing.JFrame {
 
-   
-    
     
     public MainFrame() {
         initComponents();
@@ -80,6 +78,12 @@ public class MainFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, msg, "Success", JOptionPane.INFORMATION_MESSAGE, icon);
     }
 
+    public int showConfirmMsg(String msg){
+        
+        int option = JOptionPane.showConfirmDialog(null, msg, "Confirm message",  JOptionPane.YES_NO_OPTION);
+        return option;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

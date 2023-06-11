@@ -7,10 +7,10 @@ public class TeacherModel extends UserModel implements GradeOperations {
 
     public ArrayList<ClassModel> classes;
     public ArrayList<ClassModel> classesFinished;
-    private int calcType;
 
-    public TeacherModel(String firstName, String userName, String emailAddress, String password) {
-        super(firstName, userName, emailAddress, password, 82938, 1);
+    
+    public TeacherModel(String firstName, String userName, String emailAddress, String password, int id) {
+        super(firstName, userName, emailAddress, password, id, 1);
         classes = new ArrayList<>();
     }
 
@@ -20,14 +20,6 @@ public class TeacherModel extends UserModel implements GradeOperations {
 
     public void setClasses(ClassModel newClass) {
         classes.add(newClass);
-    }
-
-    public int getCalcType() {
-        return calcType;
-    }
-
-    public void setCalcType(int calcType) {
-        this.calcType = calcType;
     }
 
     @Override

@@ -13,12 +13,12 @@ public abstract class UserModel {
     
     protected ArrayList<ClassModel> finishedClasses;
 
-    public UserModel(String firstName, String userName, String emailAddress, String password, int idRegistration, int userType) {
+    public UserModel(String firstName, String userName, String emailAddress, String password, int id, int userType) {
         this.firstName = firstName;
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.password = password;
-        this.id = idRegistration;
+        this.id = id;
         this.userType = userType;
     }
 
@@ -38,12 +38,12 @@ public abstract class UserModel {
         this.userName = userName;
     }
 
-    public int getIdRegistration() {
+    public int getId() {
         return id;
     }
 
-    public void setIdRegistration(int idRegistration) {
-        this.id = idRegistration;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserType() {

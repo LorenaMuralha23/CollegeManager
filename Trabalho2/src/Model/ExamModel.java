@@ -1,20 +1,50 @@
 package Model;
 
+import java.time.LocalDate;
+
 public class ExamModel {
-    
+
     private int id;
+    private int lastId;
     private int numOfQuestions;
-    private int totalValue;
-    private int weightOfQuestion;
     
     private float valueOfEachQuestion;
-    
+    private float totalValue;
+    private float weight;
+
     private TeacherModel teacher;
     
+    private String name;
     private String subject;
     private String warningForStudents;
-    
+
     private boolean isFinished;
+
+    private LocalDate date;
+
+    public ExamModel() {
+    }
+    
+    public ExamModel(String name, int id, int numOfQuestions, float weightOfExam, float valueOfEachQuestion, TeacherModel teacher, String subject, String warningForStudents, LocalDate date) {
+        this.name = name;
+        this.id = id;
+        this.numOfQuestions = numOfQuestions;
+        this.weight = weightOfExam;
+        this.valueOfEachQuestion = valueOfEachQuestion;
+        this.teacher = teacher;
+        this.subject = subject;
+        this.warningForStudents = warningForStudents;
+        this.date = date;
+        this.totalValue = numOfQuestions*valueOfEachQuestion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -32,7 +62,7 @@ public class ExamModel {
         this.numOfQuestions = numOfQuestions;
     }
 
-    public int getTotalValue() {
+    public float getTotalValue() {
         return totalValue;
     }
 
@@ -40,13 +70,14 @@ public class ExamModel {
         this.totalValue = totalValue;
     }
 
-    public int getWeightOfQuestion() {
-        return weightOfQuestion;
+    public float getWeight() {
+        return weight;
     }
 
-    public void setWeightOfQuestion(int weightOfQuestion) {
-        this.weightOfQuestion = weightOfQuestion;
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
+
 
     public float getValueOfEachQuestion() {
         return valueOfEachQuestion;
@@ -80,14 +111,29 @@ public class ExamModel {
         this.warningForStudents = warningForStudents;
     }
 
-    public boolean isIsFinished() {
+    public boolean getIsFinished() {
         return isFinished;
     }
 
     public void setIsFinished(boolean isFinished) {
         this.isFinished = isFinished;
     }
-    
-    
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "ExamModel{" + "\nId: " + id + "\nNum Of Questions: " + numOfQuestions + "\n Weight Of Exam: " + weight 
+                + "\nValue Of Each Question: " + valueOfEachQuestion + "\nTotal Value: " + totalValue + "\nTeacher: " + teacher + "\nSubject: " + subject + "\nWarning For Students: " 
+                + warningForStudents + "\nDate: " + date + '}' + "\n";
+    }
+
+     
     
 }

@@ -11,6 +11,7 @@ public class ClassModel{
     
     private ArrayList<StudentModel> studentsList;
     private ArrayList<ExamModel> examList;
+    private ArrayList<ExamModel> finishedExams;
    
     private float totalAverange;
     private float minimumrAverange;
@@ -23,6 +24,9 @@ public class ClassModel{
         this.teacher = teacher;
         this.minimumrAverange = minimumrAverange;
         this.calcType = calcType;
+        examList = new ArrayList<>();
+        studentsList = new ArrayList<>();
+        finishedExams = new ArrayList<>();
     }
 
     
@@ -63,8 +67,8 @@ public class ClassModel{
         return examList;
     }
 
-    public void setExamList(ArrayList<ExamModel> examList) {
-        this.examList = examList;
+    public void setExamToList(ExamModel examToAdd) {
+        this.examList.add(examToAdd);
     }
 
     public float getTotalAverange() {
@@ -83,6 +87,24 @@ public class ClassModel{
         this.minimumrAverange = minimumrAverange;
     }
 
+    public int getCalcType() {
+        return calcType;
+    }
+
+    public void setCalcType(int calcType) {
+        this.calcType = calcType;
+    }
+
+    public ArrayList<ExamModel> getFinishedExams() {
+        return finishedExams;
+    }
+
+    public void setFinishedExams(ExamModel finishExam) {
+        this.finishedExams.add(finishExam);
+    }
+
+    
+    
     @Override
     public String toString() {
         return "ClassModel{" + "\nName: " + name + "\nSubject: " + subject + "\nTeacher: " + teacher + "\nStudents List: " + studentsList 
