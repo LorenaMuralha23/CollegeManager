@@ -4,14 +4,16 @@ import java.time.LocalDate;
 
 public class ExamModel {
 
-    private int id;
-    private int lastId;
+    private ClassModel classCorresponding;
+    
+    private long id;
     private int numOfQuestions;
     
     private float valueOfEachQuestion;
     private float totalValue;
     private float weight;
-
+    
+    
     private TeacherModel teacher;
     
     private String name;
@@ -21,12 +23,13 @@ public class ExamModel {
     private boolean isFinished;
 
     private LocalDate date;
-
+    
     public ExamModel() {
     }
     
-    public ExamModel(String name, int id, int numOfQuestions, float weightOfExam, float valueOfEachQuestion, TeacherModel teacher, String subject, String warningForStudents, LocalDate date) {
+    public ExamModel(String name, ClassModel classCorresponding, long id, int numOfQuestions, float weightOfExam, float valueOfEachQuestion, TeacherModel teacher, String subject, String warningForStudents, LocalDate date) {
         this.name = name;
+        this.classCorresponding = classCorresponding;
         this.id = id;
         this.numOfQuestions = numOfQuestions;
         this.weight = weightOfExam;
@@ -36,6 +39,11 @@ public class ExamModel {
         this.warningForStudents = warningForStudents;
         this.date = date;
         this.totalValue = numOfQuestions*valueOfEachQuestion;
+        this.isFinished = false;
+    }
+
+    public ClassModel getClassCorresponding() {
+        return classCorresponding;
     }
 
     public String getName() {
@@ -46,11 +54,11 @@ public class ExamModel {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

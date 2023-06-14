@@ -22,7 +22,7 @@ public class ClassDetailsView extends javax.swing.JPanel {
         startInfo();
 
         //Main.controller.preencheJTable((DefaultTableModel)this.tb_funcionarios.getModel());
-//        Main.controller.fillStudentsTable((DefaultTableModel) this.studentsTable.getModel(), this.classToSeeDetails);
+        Main.controller.fillStudentsTable((DefaultTableModel) this.studentsTable.getModel(), this.classToSeeDetails);
     }
 
     public void startInfo() {

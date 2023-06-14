@@ -17,13 +17,15 @@ public class ClassModel{
     private float minimumrAverange;
     
     private int calcType; //1 -> normal averange // 2 -> weighted averange
-
-    public ClassModel(String name, String subject, UserModel teacher, float minimumrAverange, int calcType) {
+    private int totalOfExams;
+    
+    public ClassModel(String name, String subject, UserModel teacher, float minimumrAverange, int calcType, int totalOfExams) {
         this.name = name;
         this.subject = subject;
         this.teacher = teacher;
         this.minimumrAverange = minimumrAverange;
         this.calcType = calcType;
+        this.totalOfExams = totalOfExams;
         examList = new ArrayList<>();
         studentsList = new ArrayList<>();
         finishedExams = new ArrayList<>();
@@ -47,6 +49,14 @@ public class ClassModel{
         this.subject = subject;
     }
 
+    public int getTotalOfExams() {
+        return totalOfExams;
+    }
+
+    public void setTotalOfExams(int totalOfExams) {
+        this.totalOfExams = totalOfExams;
+    }
+    
     public UserModel getTeacher() {
         return teacher;
     }

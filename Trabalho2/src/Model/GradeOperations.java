@@ -1,9 +1,9 @@
 package Model;
 
 public interface GradeOperations {
-    
-    public float calcExamGrade(int numRightAnswers, ExamModel exam);
-    public void normalAverangeCalc(StudentModel student);
-    public void weightedAverangeCalc(StudentModel student);
-    
+
+    public float normalAverangeCalc(StudentModel student, ClassModel classToCalc);
+
+    public float weightedAverangeCalc(StudentModel student, ClassModel classToCalc);
+
 }

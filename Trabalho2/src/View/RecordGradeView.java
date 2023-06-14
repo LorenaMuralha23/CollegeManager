@@ -1,8 +1,10 @@
 package View;
 
 import Model.ClassModel;
+import Model.ExamModel;
 import Model.Main;
 import java.awt.Color;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,38 +20,20 @@ public class RecordGradeView extends javax.swing.JPanel {
         modelRecordGradeTable = new DefaultTableModel();
         studentsTable.getTableHeader().setBackground(new Color(167, 135, 226));
         studentsTable.getTableHeader().setForeground(new Color(255, 255, 255));
-        classToRecordGrades = classToRecord;
+        this.classToRecordGrades = classToRecord;
         classNameField.setText(classToRecord.getName());
 
-        Main.controller.fillRecordGradeTable((DefaultTableModel) studentsTable.getModel(), classToRecord);
-
-        for (int i = 0; i < studentsTable.getModel().getRowCount(); i++) {
-            float value = Float.parseFloat((String) studentsTable.getModel().getValueAt(i, 1));
-            inicialValues.add(value);
-        }
-
         startComboBox();
+        
     }
 
-
-    /*
-    examsComboBox.removeAllItems();
-        if (!this.classToSeeDetails.getExamList().isEmpty()) {
-            for (int i = 0; i < this.classToSeeDetails.getExamList().size(); i++) {
-                examsComboBox.addItem(this.classToSeeDetails.getExamList().get(i).getName());
-            }
-        } else {
-            examsComboBox.setEnabled(false);
-        }
     
-     */
+
     public void startComboBox() {
         examsComboBox.removeAllItems();
         if (!classToRecordGrades.getFinishedExams().isEmpty()) {
-            for (int i = 0; i < this.classToRecordGrades.getExamList().size(); i++) {
-                if (this.classToRecordGrades.getExamList().get(i).getIsFinished()) {
-                    examsComboBox.addItem(this.classToRecordGrades.getExamList().get(i).getName());
-                }
+            for (int i = 0; i < classToRecordGrades.getFinishedExams().size(); i++) {
+                examsComboBox.addItem(classToRecordGrades.getFinishedExams().get(i).getName());
             }
         } else {
             examsComboBox.setEnabled(false);
@@ -113,6 +97,11 @@ public class RecordGradeView extends javax.swing.JPanel {
         examsComboBox.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         examsComboBox.setForeground(new java.awt.Color(255, 255, 255));
         examsComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        examsComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                examsComboBoxItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(88, 44, 169));
@@ -151,12 +140,13 @@ public class RecordGradeView extends javax.swing.JPanel {
         classNameField.setForeground(new java.awt.Color(255, 255, 255));
         classNameField.setText("jTextField1");
 
+        studentsTable.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         studentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Student", "Grade", "Result"
+                "Student", "Number Of Right Answers", "Result"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -167,6 +157,7 @@ public class RecordGradeView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        studentsTable.setToolTipText("");
         jScrollPane2.setViewportView(studentsTable);
 
         javax.swing.GroupLayout FormPanelLayout = new javax.swing.GroupLayout(FormPanel);
@@ -269,8 +260,18 @@ public class RecordGradeView extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnMouseClicked
 
     private void saveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseClicked
-        Main.controller.recordGrades(modelRecordGradeTable, classToRecordGrades, examsComboBox.getSelectedItem().toString());
+        ExamModel ex = Main.controller.findFinishedExamByName(classToRecordGrades, examsComboBox.getSelectedItem().toString());
+        Main.controller.saveGradeTable((DefaultTableModel) studentsTable.getModel(), classToRecordGrades, ex);
     }//GEN-LAST:event_saveBtnMouseClicked
+
+    private void examsComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_examsComboBoxItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            String selectedItem = examsComboBox.getSelectedItem().toString();
+            System.out.println("Item selecionado: " + selectedItem);
+            ExamModel exam = Main.controller.findFinishedExamByName(classToRecordGrades, selectedItem);
+            Main.controller.fillRecordGradeTable((DefaultTableModel) studentsTable.getModel(), classToRecordGrades, exam);
+        }
+    }//GEN-LAST:event_examsComboBoxItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

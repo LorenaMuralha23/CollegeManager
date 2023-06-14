@@ -3,13 +3,13 @@ package Model;
 import View.MainFrame;
 import java.util.ArrayList;
 
-public class TeacherModel extends UserModel implements GradeOperations {
+public class TeacherModel extends UserModel {
 
     public ArrayList<ClassModel> classes;
     public ArrayList<ClassModel> classesFinished;
 
     
-    public TeacherModel(String firstName, String userName, String emailAddress, String password, int id) {
+    public TeacherModel(String firstName, String userName, String emailAddress, String password, long id) {
         super(firstName, userName, emailAddress, password, id, 1);
         classes = new ArrayList<>();
     }
@@ -21,42 +21,5 @@ public class TeacherModel extends UserModel implements GradeOperations {
     public void setClasses(ClassModel newClass) {
         classes.add(newClass);
     }
-
-    @Override
-    public float calcExamGrade(int numRightAnswers, ExamModel exam) {
-        return numRightAnswers * exam.getValueOfEachQuestion();
-    }
-
-    @Override
-    public void normalAverangeCalc(StudentModel student) {
-        int sumOfGrades = 0;
-
-        try {
-            if (!classesFinished.isEmpty()) {
-
-                for (int i = 0; i < classesFinished.size(); i++) {
-                    if (!student.getExamsGrades().isEmpty()) {
-                        for (int j = 0; j < student.getExamsGrades().size(); j++) {
-                            sumOfGrades += student.getExamGrade(j);
-                        }
-                    }
-                }
-
-                float averange = sumOfGrades / student.getExamsGrades().size();
-                student.setAverange(averange);
-
-            } else {
-                throw new ExceptionModel("Error: There no exam grade for this student!");
-            }
-        } catch (ExceptionModel e) {
-            Main.controller.window.showErrorMsg(e.getMessage());
-        }
-
-    }
-
-    @Override
-    public void weightedAverangeCalc(StudentModel student) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
 }

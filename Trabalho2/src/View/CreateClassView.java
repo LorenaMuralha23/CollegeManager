@@ -108,7 +108,7 @@ public class CreateClassView extends javax.swing.JPanel {
 
         totalOfExamsLabel.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         totalOfExamsLabel.setForeground(new java.awt.Color(42, 8, 69));
-        totalOfExamsLabel.setText("Total of Exams:");
+        totalOfExamsLabel.setText("Total of Exams:*");
 
         selectLabel.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         selectLabel.setForeground(new java.awt.Color(42, 8, 69));

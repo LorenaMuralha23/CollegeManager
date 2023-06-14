@@ -1,19 +1,20 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class UserModel {
+public abstract class UserModel implements Serializable{
 
     protected String firstName;
     protected String userName;
     protected String emailAddress;
     protected String password;
-    protected int id;
+    protected long id;
     protected int userType;
     
     protected ArrayList<ClassModel> finishedClasses;
 
-    public UserModel(String firstName, String userName, String emailAddress, String password, int id, int userType) {
+    public UserModel(String firstName, String userName, String emailAddress, String password, long id, int userType) {
         this.firstName = firstName;
         this.userName = userName;
         this.emailAddress = emailAddress;
@@ -38,7 +39,7 @@ public abstract class UserModel {
         this.userName = userName;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

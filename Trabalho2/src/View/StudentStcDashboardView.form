@@ -80,23 +80,29 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="subtitleLabel1" max="32767" attributes="0"/>
                               <Component id="loginLabel2" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="subtitleLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="studentsComboBox" min="-2" pref="227" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="loginLabel3" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="loginLabel1" pref="807" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="loginLabel3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="loginLabel1" pref="807" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="statisticPanel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                                              <Component id="statisticPanel4" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                                              <Component id="statisticPanel6" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="statisticPanel" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                                          <Component id="statisticPanel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                                          <Component id="statisticPanel6" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="subtitleLabel" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="studentsComboBox" min="-2" pref="227" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="subtitleLabel3" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="classCorrespondingField" min="-2" pref="314" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
@@ -109,7 +115,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="subtitleLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox3" min="-2" pref="186" max="-2" attributes="0"/>
+                                  <Component id="examComboBox" min="-2" pref="186" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="statisticPanel1" min="-2" max="-2" attributes="0"/>
@@ -137,12 +143,18 @@
                   <Component id="subtitleLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="loginLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="subtitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentsComboBox" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="classCorrespondingField" linkSize="2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="subtitleLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="subtitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="studentsComboBox" linkSize="2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="loginLabel3" min="-2" max="-2" attributes="0"/>
@@ -159,7 +171,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="subtitleLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox3" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="examComboBox" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -223,14 +235,12 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Andrew Alexander"/>
-                <StringItem index="1" value="Ted Mosby"/>
-                <StringItem index="2" value="Stefani Joanne"/>
-                <StringItem index="3" value="Katheryn Elizabeth"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="studentsComboBoxItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -258,7 +268,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="subtitleLabel2" alignment="1" pref="217" max="32767" attributes="0"/>
-                  <Component id="subtitleLabel3" alignment="1" max="32767" attributes="0"/>
+                  <Component id="examsFinishedLabel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -267,7 +277,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="subtitleLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="examsFinishedLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -286,7 +296,7 @@
                 <Property name="text" type="java.lang.String" value="Exams Finished:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel3">
+            <Component class="javax.swing.JLabel" name="examsFinishedLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -295,7 +305,7 @@
                   <Color blue="45" green="8" red="2a" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="19"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -326,7 +336,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="subtitleLabel4" alignment="1" pref="217" max="32767" attributes="0"/>
-                  <Component id="subtitleLabel14" alignment="1" max="32767" attributes="0"/>
+                  <Component id="totalAverangeLabel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -335,7 +345,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="subtitleLabel14" min="-2" max="-2" attributes="0"/>
+                      <Component id="totalAverangeLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -354,7 +364,7 @@
                 <Property name="text" type="java.lang.String" value="Total Averange:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel14">
+            <Component class="javax.swing.JLabel" name="totalAverangeLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -363,7 +373,7 @@
                   <Color blue="45" green="8" red="2a" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="4.5"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -382,7 +392,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="subtitleLabel17" alignment="1" pref="217" max="32767" attributes="0"/>
-                  <Component id="subtitleLabel18" alignment="1" max="32767" attributes="0"/>
+                  <Component id="classAverange" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -391,7 +401,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="subtitleLabel18" min="-2" max="-2" attributes="0"/>
+                      <Component id="classAverange" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -410,7 +420,7 @@
                 <Property name="text" type="java.lang.String" value="Class Averange:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel18">
+            <Component class="javax.swing.JLabel" name="classAverange">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -419,7 +429,7 @@
                   <Color blue="45" green="8" red="2a" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="12.5"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -436,7 +446,7 @@
             <Property name="text" type="java.lang.String" value="Choose an exam:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox3">
+        <Component class="javax.swing.JComboBox" name="examComboBox">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="6c" red="a0" type="rgb"/>
@@ -448,14 +458,12 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Class 1"/>
-                <StringItem index="1" value="Class 2"/>
-                <StringItem index="2" value="Class 3"/>
-                <StringItem index="3" value="Class 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="examComboBoxItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -474,7 +482,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="subtitleLabel7" alignment="1" pref="217" max="32767" attributes="0"/>
-                  <Component id="subtitleLabel21" alignment="1" max="32767" attributes="0"/>
+                  <Component id="wrondAnswLabel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -483,7 +491,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel7" min="-2" pref="17" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="subtitleLabel21" min="-2" max="-2" attributes="0"/>
+                      <Component id="wrondAnswLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -502,7 +510,7 @@
                 <Property name="text" type="java.lang.String" value="Number of wrong answers:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel21">
+            <Component class="javax.swing.JLabel" name="wrondAnswLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -511,7 +519,7 @@
                   <Color blue="45" green="8" red="2a" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="7"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -530,7 +538,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="subtitleLabel8" alignment="1" pref="217" max="32767" attributes="0"/>
-                  <Component id="subtitleLabel9" alignment="1" max="32767" attributes="0"/>
+                  <Component id="numRightAwnsLabel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -539,7 +547,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="subtitleLabel9" min="-2" max="-2" attributes="0"/>
+                      <Component id="numRightAwnsLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -558,7 +566,7 @@
                 <Property name="text" type="java.lang.String" value="Number of right answers:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel9">
+            <Component class="javax.swing.JLabel" name="numRightAwnsLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -567,7 +575,7 @@
                   <Color blue="45" green="8" red="2a" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="3"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -586,7 +594,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="subtitleLabel10" alignment="1" pref="217" max="32767" attributes="0"/>
-                  <Component id="subtitleLabel11" alignment="1" max="32767" attributes="0"/>
+                  <Component id="totalSquoreLabel" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -595,7 +603,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="subtitleLabel11" min="-2" max="-2" attributes="0"/>
+                      <Component id="totalSquoreLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -614,7 +622,7 @@
                 <Property name="text" type="java.lang.String" value="Total squore:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel11">
+            <Component class="javax.swing.JLabel" name="totalSquoreLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -623,7 +631,7 @@
                   <Color blue="45" green="8" red="2a" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="3.5"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -647,6 +655,34 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginBtnMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="subtitleLabel3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="45" green="8" red="2a" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="text" type="java.lang.String" value="Class:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="classCorrespondingField">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="6c" red="a0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="18" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

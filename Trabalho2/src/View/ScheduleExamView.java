@@ -360,6 +360,7 @@ public class ScheduleExamView extends javax.swing.JPanel {
 
         if (option == 0) {
             Main.controller.scheduleExamPanel = null;
+            Main.controller.teacherDashboardPanel = new TeacherDashboardView();
             Main.controller.showScreen(Main.controller.teacherDashboardPanel);
         } else {
             JOptionPane.showMessageDialog(null, "Operation Canseled!", errorMsg, HEIGHT);

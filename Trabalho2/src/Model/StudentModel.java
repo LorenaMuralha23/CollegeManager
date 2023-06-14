@@ -6,19 +6,26 @@ import java.util.ArrayList;
 public class StudentModel extends UserModel {
 
     private ArrayList<ClassModel> classesList;
-
+    private ArrayList<String> classesSituation;
+    
+    
     private MessageModel teacherMsg;
     private ArrayList<MessageModel> msgsReceived = new ArrayList<>();
-    private int lastNumMsg;
+  
 
     private float averange;
-    private ArrayList<Float> examsGrades;
+    private ArrayList<ExamModel> exams;
+    private ArrayList<Integer> numberOfRightAnws;
+    private ArrayList<Float> examsScores;
 
-    public StudentModel(String firstName, String userName, String emailAddress, String password, int id) {
+    public StudentModel(String firstName, String userName, String emailAddress, String password, long id) {
         super(firstName, userName, emailAddress, password, id, 2);
         classesList = new ArrayList<>();
         msgsReceived = new ArrayList<>();
-        examsGrades = new ArrayList<>();
+        exams = new ArrayList<>();
+        classesSituation = new ArrayList<>();
+        numberOfRightAnws = new ArrayList<>();
+        examsScores = new ArrayList<>();
     }
 
     public ArrayList<ClassModel> getClassesList() {
@@ -45,26 +52,49 @@ public class StudentModel extends UserModel {
         this.averange = averange;
     }
 
-    public float getExamGrade(int index) {
-        return examsGrades.get(index);
+    public ExamModel getExam(int index) {
+        return exams.get(index);
     }
 
-    public void setExamGrade(float newGrade) {
-        this.examsGrades.add(newGrade);
+    public ArrayList<ExamModel> getStudentExams() {
+        return exams;
     }
 
-    public ArrayList<Float> getExamsGrades() {
-        return examsGrades;
+    public String getClassesSituation(int index) {
+        System.out.println(classesSituation.get(index));
+        return classesSituation.get(index);
     }
 
-    public void setExamsGrades(ArrayList<Float> examsGrades) {
-        this.examsGrades = examsGrades;
+    public void setClassesSituation(String situation) {
+        this.classesSituation.add(situation);
     }
 
+    public void setStudentState(int index, String state){
+        this.classesSituation.add(index, state);
+    }
+
+    public ArrayList<Integer> getNumberOfRightAnwsArray() {
+        return numberOfRightAnws;
+    }
+
+    public void setNumOfRightAnwr(int index, int num) {
+        this.numberOfRightAnws.add(index, num);
+    }
+
+    public ArrayList<Float> getExamsScoresArray() {
+        return examsScores;
+    }
+
+    public void setExamsScores(int index, float score) {
+        this.examsScores.add(index, score);
+    }
+    
+    
+    
     @Override
     public String toString() {
-        return "StudentModel{" + "\nNome: " + super.firstName + "\nTeacher Msg: " + teacherMsg + "\nMsg Received: " + msgsReceived + "\nLast Num Msg: " + lastNumMsg
-                + "\nId: " + id + "\nAverange: " + averange + "\nExams Grades: " + examsGrades + '}';
+        return "StudentModel{" + "\nNome: " + super.firstName + "\nTeacher Msg: " + teacherMsg + "\nMsg Received: " + msgsReceived + "\nLast Num Msg: " 
+                + "\nId: " + id + "\nAverange: " + averange + "\nExams Grades: " + exams + '}';
     }
 
 }

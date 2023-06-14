@@ -4,6 +4,8 @@ import Model.ClassModel;
 import Model.EmailValidationModel;
 import Model.ExamModel;
 import Model.ExceptionModel;
+import Model.GradeOperations;
+import Model.IdGeneratorModel;
 import Model.Main;
 import Model.StudentModel;
 import Model.TeacherModel;
@@ -23,20 +25,27 @@ import View.TeacherDashboardView;
 import java.awt.BorderLayout;
 import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.management.StringValueExp;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-public class Controller {
+public class Controller implements GradeOperations {
 
     public MainFrame window = new MainFrame();
 
     //User's panel
     public LoginView loginPanel;
     public CreateAccountView crtAccountPanel;
+
+    public ArrayList<Long> ids;
+    IdGeneratorModel idGenerator;
 
     //Teacher's panels
     public TeacherDashboardView teacherDashboardPanel;
@@ -68,6 +77,8 @@ public class Controller {
     public void start() {
         usersDB = new ArrayList<>();
         emailValidator = new EmailValidationModel();
+        ids = new ArrayList<>();
+        idGenerator = new IdGeneratorModel();
 
         //======> user test starts here
         TeacherModel teacherTest = new TeacherModel("Lorena", "lorena23", "lorena@gmail.com", "2301", 34);
@@ -78,33 +89,32 @@ public class Controller {
         StudentModel studentTest4 = new StudentModel("Arthur", "art26", "arthut@gmail.com", "2612", 63);
         StudentModel studentTest5 = new StudentModel("Fefe", "felson13", "fefe@gmail.com", "1301", 47);
         StudentModel studentTest6 = new StudentModel("Alice", "machadao01", "alice@gmail.com", "0106", 52);
-        ExamModel exam1 = new ExamModel("Exam 1", 1, 5, 0, 2, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 20));
-        ExamModel exam2 = new ExamModel("Exam 2", 2, 5, 0, 2, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 21));
-        ExamModel exam3 = new ExamModel("Exam 3", 3, 5, 0, 2, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 22));
-        ExamModel exam4 = new ExamModel("Exam 4", 4, 5, 0, 2, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 23));
         usersDB.add(teacherTest);
         usersDB.add(teacherTest2);
         usersDB.add(studentTest);
         usersDB.add(studentTest2);
         usersDB.add(studentTest3);
-        ClassModel class1 = new ClassModel("Desenvolvimento Android", "Programacao", teacherTest, 6, 1);
-        ClassModel class2 = new ClassModel("Desenvolvimento WEB", "Programacao", teacherTest, 6, 2);
-        ClassModel class3 = new ClassModel("Design WEB", "Programacao", teacherTest2, 6, 2);
-        ClassModel class4 = new ClassModel("Desing UX", "Programacao", teacherTest2, 6, 1);
+        usersDB.add(studentTest4);
+        usersDB.add(studentTest5);
+        usersDB.add(studentTest6);
+        ClassModel class1 = new ClassModel("Desenvolvimento Android", "Programacao", teacherTest, 6, 1, 4);
+        ClassModel class2 = new ClassModel("Desenvolvimento Kotlin", "Programacao", teacherTest, 6, 1, 2);
+        ExamModel exam1 = new ExamModel("Exam 1", class2, 1, 10, 0, 1, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 20));
+        ExamModel exam2 = new ExamModel("Exam 2", class2, 2, 10, 0, 1, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 21));
+        ExamModel exam3 = new ExamModel("Exam 3", class1, 3, 5, 0, 2, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 22));
+        ExamModel exam4 = new ExamModel("Exam 4", class1, 4, 5, 0, 2, teacherTest, "Programacao", "", LocalDate.of(2023, 06, 23));
         teacherTest.setClasses(class1);
         teacherTest.setClasses(class2);
-        teacherTest2.setClasses(class3);
-        teacherTest2.setClasses(class4);
-        class1.setExamToList(exam1);
-        class1.setExamToList(exam2);
+        class2.setExamToList(exam1);
+        class2.setExamToList(exam2);
         class1.setExamToList(exam3);
         class1.setExamToList(exam4);
-        class1.getStudentsList().add(studentTest);
-        class1.getStudentsList().add(studentTest2);
-        class1.getStudentsList().add(studentTest3);
-        class1.getStudentsList().add(studentTest4);
-        class1.getStudentsList().add(studentTest5);
-        class1.getStudentsList().add(studentTest6);
+//        class1.getStudentsList().add(studentTest);
+//        class1.getStudentsList().add(studentTest2);
+//        class1.getStudentsList().add(studentTest3);
+//        class1.getStudentsList().add(studentTest4);
+//        class1.getStudentsList().add(studentTest5);
+//        class1.getStudentsList().add(studentTest6);
         //======> user test finishes here
         loginPanel = new LoginView();
         showScreen(loginPanel);
@@ -170,10 +180,10 @@ public class Controller {
 
                             if (userType == 1) {
                                 //User type -> Teacher
-                                user = new TeacherModel(firstName, userName, emailAddress, password, usersDB.size() + 1);
+                                user = new TeacherModel(firstName, userName, emailAddress, password, idGenerator.generator());
                             } else {
                                 //User type -> Student
-                                user = new StudentModel(firstName, userName, emailAddress, password, usersDB.size() + 1);
+                                user = new StudentModel(firstName, userName, emailAddress, password, idGenerator.generator());
                             }
 
                             if (addUserDB(user)) {
@@ -209,9 +219,9 @@ public class Controller {
             if (!className.equals("") && !subject.equals("") && calcType != 0 && minAvrgOfApp != 0) {
 
                 if (!existsClassByName(className)) {
-                    if (totalOfExams >= 0) {
+                    if (totalOfExams > 0) {
 
-                        ClassModel newClass = new ClassModel(className, subject, userLogged, minAvrgOfApp, calcType);
+                        ClassModel newClass = new ClassModel(className, subject, userLogged, minAvrgOfApp, calcType, totalOfExams);
 
                         if (addClassesToUser(newClass)) {
                             window.showSucessfullMsg("Success! Your new class is now avaliable!");
@@ -220,7 +230,7 @@ public class Controller {
 
                         showClasses();
                     } else {
-                        throw new ExceptionModel("You can't set negative numbers as total of Exams!");
+                        throw new ExceptionModel("You can't set negative numbers or 0 as total of Exams!");
                     }
                 } else {
                     throw new ExceptionModel("A class with the same name already exists!");
@@ -241,16 +251,20 @@ public class Controller {
             if (!className.equals("") && numOfQstns != 0 && valueOfEachQst != 0) {
                 ClassModel classAux = findClassByName(className);
 
-                if (!existExam(classAux, name)) {
-                    if (userLogged instanceof TeacherModel userAux) {
-                        ExamModel newExam = new ExamModel(name, classAux.getExamList().size() + 1, numOfQstns, weightOfExam, valueOfEachQst, userAux, classAux.getSubject(), warnForStudents, date);
-                        if (addExamToList(newExam, classAux)) {
-                            scheduleExamPanel.cleanFields();
-                            
+                if (classAux.getExamList().size() < classAux.getTotalOfExams()) {
+                    if (!existExam(classAux, name)) {
+                        if (userLogged instanceof TeacherModel userAux) {
+                            ids.add(idGenerator.generator());
+                            ExamModel newExam = new ExamModel(name, classAux, ids.get(ids.size() - 1), numOfQstns, weightOfExam, valueOfEachQst, userAux, classAux.getSubject(), warnForStudents, date);
+                            if (addExamToList(newExam, classAux)) {
+                                scheduleExamPanel.cleanFields();
+                            }
                         }
+                    } else {
+                        throw new ExceptionModel("A exam with the same name already exists!");
                     }
                 } else {
-                    throw new ExceptionModel("A exam with the same name already exists!");
+                    throw new ExceptionModel("You have exceeded the maximum number of exams. Finish one to schedule a new one");
                 }
 
             } else {
@@ -262,7 +276,7 @@ public class Controller {
 
     }
 
-    public void fillStudentsTable(DefaultTableModel model, ClassModel classToVerify, ExamModel examSelected) {
+    public void fillStudentsTable(DefaultTableModel model, ClassModel classToVerify) {
         //remove all row to update everything
         if (model.getRowCount() > 0) {
             for (int i = 0; i < model.getRowCount(); i++) {
@@ -270,59 +284,75 @@ public class Controller {
             }
         }
 
+        Object[] rowData = new Object[1];
         this.modelStudentsTable = model;
 
         if (!classToVerify.getStudentsList().isEmpty()) {
             for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
-                this.modelStudentsTable.insertRow(i, new Object[]{classToVerify.getStudentsList().get(i).getName()});
+                rowData[0] = classToVerify.getStudentsList().get(i).getName();
+                modelStudentsTable.addRow(rowData);
             }
         }
 
     }
 
-    public void fillRecordGradeTable(DefaultTableModel model, ClassModel classToVerify) {
+    public void fillRecordGradeTable(DefaultTableModel model, ClassModel classToVerify, ExamModel exam) {
+        showScores(classToVerify, exam);
         modelRecordGradeTable = model;
         Object[] rowData = new Object[3];
-
-        if (!classToVerify.getFinishedExams().isEmpty()) {
-            if (model.getRowCount() > 0) {
-                for (int i = 0; i < model.getRowCount(); i++) {
-                    model.removeRow(i);
+        cleanRecordGradeTable(modelRecordGradeTable);
+        for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
+            rowData[0] = classToVerify.getStudentsList().get(i).getName();
+            int examIndex = 0;
+            for (int j = 0; j < classToVerify.getStudentsList().get(i).getStudentExams().size(); j++) {
+                if (classToVerify.getStudentsList().get(i).getStudentExams().get(j).getId() == exam.getId()) {
+                    examIndex = j;
                 }
             }
 
-            for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
-                rowData[0] = classToVerify.getStudentsList().get(i).getName();
-                for (int j = 0; j < 10; j++) {
-                    
-                }
-                rowData[2] = "No grade register";
-                modelRecordGradeTable.addRow(rowData);
-            }
+            rowData[1] = classToVerify.getStudentsList().get(i).getNumberOfRightAnwsArray().get(examIndex);
+            rowData[2] = classToVerify.getStudentsList().get(i).getExamsScoresArray().get(examIndex);
+
+            modelRecordGradeTable.addRow(rowData);
         }
-
     }
 
-    public boolean verifyGradeChange(DefaultTableModel model, ClassModel classToVerify, ArrayList<Float> inicialValues) {
-        boolean keepChanges = false;
+    public void cleanRecordGradeTable(DefaultTableModel model) {
         modelRecordGradeTable = model;
 
-        return keepChanges;
-    }
-
-    public void recordGrades(DefaultTableModel model, ClassModel classToUpdate, String examName) {
-        System.out.println("Nome para procurar: " + examName);
-        int indexOfExam = classToUpdate.getExamList().indexOf(findExamByName(classToUpdate, examName));
-        System.out.println("Index do exame: " + indexOfExam);
-        try {
-            for (int i = 0; i < classToUpdate.getStudentsList().size(); i++) {
-
+        if (modelRecordGradeTable.getRowCount() > 0) {
+            while (modelRecordGradeTable.getRowCount() > 0) {
+                modelRecordGradeTable.removeRow(0);
             }
-            showStudentGrade(classToUpdate);
-        } catch (NumberFormatException e) {
-            window.showErrorMsg("Grades need to be a numeric value!");
         }
 
+    }
+
+    public void saveGradeTable(DefaultTableModel model, ClassModel classToVerify, ExamModel exam) {
+        this.modelRecordGradeTable = model;
+
+        int[] numberOfRightAwns = new int[modelRecordGradeTable.getRowCount()];
+        float[] results = new float[modelRecordGradeTable.getRowCount()];
+
+        for (int i = 0; i < modelRecordGradeTable.getRowCount(); i++) {
+            String numObj = modelRecordGradeTable.getValueAt(i, 1).toString();
+            numberOfRightAwns[i] = Integer.parseInt(numObj);
+            results[i] = calcExamGrade(exam, numberOfRightAwns[i]);
+        }
+
+        for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
+            StudentModel studentAux = classToVerify.getStudentsList().get(i);
+            for (int j = 0; j < studentAux.getStudentExams().size(); j++) {
+                if (studentAux.getStudentExams().get(j).getId() == exam.getId()) {
+                    studentAux.getNumberOfRightAnwsArray().set(j, numberOfRightAwns[i]);
+                    studentAux.getExamsScoresArray().set(j, results[i]);
+                }
+            }
+
+        }
+
+        cleanRecordGradeTable(modelRecordGradeTable);
+        fillRecordGradeTable(modelRecordGradeTable, classToVerify, exam);
     }
 
     public void finishClass(ClassModel classToFinish) {
@@ -370,9 +400,12 @@ public class Controller {
                 try {
                     if (examToFinish.getId() == classToVerify.getExamList().get(i).getId()) {
                         ExamModel ex = classToVerify.getExamList().get(i);
+                        System.out.println("Nome: " + ex.getName());
+                        System.out.println("Id: " + ex.getId());
+                        classToVerify.getExamList().remove(ex);
                         classToVerify.getFinishedExams().add(ex);
                         ex.setIsFinished(true);
-                        window.showConfirmMsg("The exam " + examToFinish.getName() + "was successfully finished!");
+                        window.showSucessfullMsg("The exam " + examToFinish.getName() + " was successfully finished!");
                         classDetailsPanel.startComboBox();
 
                     }
@@ -391,6 +424,7 @@ public class Controller {
     }
 
     //====> Student methods
+    //testar o metodo show situation pra ver a situacao
     public void joinClass(String className) {
 
         ClassModel classAux = findClassByName(className);
@@ -398,19 +432,24 @@ public class Controller {
         try {
 
             if (userLogged instanceof StudentModel) {
-                System.out.println("Userlogged name: " + userLogged.getName());
+
                 StudentModel userAux = (StudentModel) userLogged;
 
                 if (!existsStudentInClass(userAux, classAux)) {
 
                     classAux.getStudentsList().add(userAux);
+                    userAux.getClassesList().add(classAux);
                     if (!classAux.getExamList().isEmpty()) {
                         for (int i = 0; i < classAux.getExamList().size(); i++) {
-                            userAux.getExamsGrades().add(0f);
+                            userAux.getStudentExams().add(classAux.getExamList().get(i));
+                            userAux.getNumberOfRightAnwsArray().add(0);
+                            userAux.getExamsScoresArray().add(0f);
                         }
                     }
+
+                    userAux.setClassesSituation("-- In progress --");
+                    showSituationInClass(classAux, userAux);
                     window.showSucessfullMsg("Congratulations! You joined this class!");
-                    showStudentsInTheClass(classAux);
 
                 } else {
                     throw new ExceptionModel("You are in this class already!");
@@ -422,6 +461,10 @@ public class Controller {
             window.showErrorMsg(e.getMessage());
         }
 
+    }
+
+    public float calcExamGrade(ExamModel exam, int numberOfRightAnsw) {
+        return exam.getValueOfEachQuestion() * numberOfRightAnsw;
     }
 
     //====> "Data Base" methods
@@ -504,7 +547,6 @@ public class Controller {
                     for (int j = 0; j < userAux.getClasses().size(); j++) {
                         if (userAux.getClasses().get(j).getName().equals(nameToFind)) {
                             classFinded = userAux.getClasses().get(j);
-                            System.out.println("Achei a classe!");
                         }
                     }
                 }
@@ -573,21 +615,21 @@ public class Controller {
     }
 
     public ExamModel findFinishedExamByName(ClassModel classToSearch, String examName) {
-        ExamModel examFinded = null;
+        ExamModel examFinishedFinded = null;
+
         try {
+
             for (int i = 0; i < classToSearch.getFinishedExams().size(); i++) {
                 if (classToSearch.getFinishedExams().get(i).getName().equals(examName)) {
-                    examFinded = classToSearch.getFinishedExams().get(i);
+                    examFinishedFinded = classToSearch.getFinishedExams().get(i);
                 }
             }
-            if(examFinded == null){
-                throw new ExceptionModel("There isn't any  exam with this info in this class!");
-            }
-        } catch (ExceptionModel e) {
+
+        } catch (Exception e) {
             window.showErrorMsg(e.getMessage());
         }
 
-        return examFinded;
+        return examFinishedFinded;
     }
 
     public boolean addExamToList(ExamModel newExam, ClassModel classToAdd) {
@@ -596,14 +638,13 @@ public class Controller {
             if (userLogged instanceof TeacherModel) {
                 classToAdd.setExamToList(newExam);
                 isSuceed = true;
-                Main.controller.window.showSucessfullMsg("Your ne exam is schedule to " + newExam.getDate() + "!");
-                
-                if(!classToAdd.getStudentsList().isEmpty()){
-                    for (int i = 0; i < classToAdd.getStudentsList().size(); i++) {
-                        classToAdd.getStudentsList().get(i).setExamGrade(0f);
-                    }
+                for (int i = 0; i < classToAdd.getStudentsList().size(); i++) {
+                    classToAdd.getStudentsList().get(i).getStudentExams().add(newExam);
+                    classToAdd.getStudentsList().get(i).setNumOfRightAnwr(classToAdd.getStudentsList().get(i).getNumberOfRightAnwsArray().size(), 0);
+                    classToAdd.getStudentsList().get(i).setExamsScores(classToAdd.getStudentsList().get(i).getExamsScoresArray().size(), 0f);
                 }
-                
+                Main.controller.window.showSucessfullMsg("Your new exam is schedule to " + newExam.getDate() + "!");
+
             }
         } catch (Exception e) {
             Main.controller.window.showErrorMsg("An error ocurred while scheduling your new exam! Please, try again later!");
@@ -647,6 +688,17 @@ public class Controller {
 
     }
 
+    public StudentModel findStudentById(long id, ClassModel classModel) {
+        System.out.println("Id recebido: " + id);
+        StudentModel studentFinded = null;
+        for (int i = 0; i < classModel.getStudentsList().size(); i++) {
+            if (classModel.getStudentsList().get(i).getId() == id) {
+                studentFinded = classModel.getStudentsList().get(i);
+            }
+        }
+        return studentFinded;
+    }
+
     public boolean removeClass(ClassModel classToFinish) {
         boolean success = false;
         try {
@@ -667,6 +719,228 @@ public class Controller {
         }
 
         return success;
+    }
+
+    public void updateStudentState(StudentModel student, ClassModel classToUpdate, String state) {
+
+        for (int i = 0; i < student.getClassesList().size(); i++) {
+
+            if (student.getClassesList().get(i).getName().equals(classToUpdate.getName())) {
+                student.setStudentState(i, state);
+            }
+
+        }
+
+    }
+
+    //====> DashBoard information getters starts here
+    public String getNumberOfStudents(ClassModel classToVerify) {
+
+        String numberOfStudentsTxt = String.valueOf(classToVerify.getStudentsList().size());
+        return numberOfStudentsTxt;
+
+    }
+
+    public String getNumberOfExamsFromClass(ClassModel classToVerify) {
+        int cont = 0;
+        for (int i = 0; i < classToVerify.getExamList().size(); i++) {
+            if (classToVerify.getExamList().get(i).getDate().isAfter(LocalDate.now())) {
+                cont++;
+            }
+        }
+
+        String numberOfExamsTxt = String.valueOf(cont);
+        return numberOfExamsTxt;
+    }
+
+    public String getPrctOfApprovement(ClassModel classToVerify) {
+        String percetageTxt = "";
+
+        if (!classToVerify.getStudentsList().isEmpty()) {
+
+            if (!classToVerify.getFinishedExams().isEmpty()) {
+                int cont = 0;
+                if (classToVerify.getCalcType() == 1) {
+                    for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
+                        float studentAverange = normalAverangeCalc(classToVerify.getStudentsList().get(i), classToVerify);
+                        if (studentAverange > classToVerify.getMinimumrAverange()) {
+                            //the student is approved :)
+                            cont++;
+                        }
+                    }
+                } else {
+
+                    for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
+                        float studentAverange = weightedAverangeCalc(classToVerify.getStudentsList().get(i), classToVerify);
+                        if (studentAverange > classToVerify.getMinimumrAverange()) {
+                            //the student is approved :)
+                            cont++;
+                        }
+                    }
+
+                }
+
+                float prctOfApprovement = (100 * cont) / classToVerify.getStudentsList().size();
+                DecimalFormat formatter = new DecimalFormat("0.0");
+                percetageTxt = formatter.format(prctOfApprovement);
+                percetageTxt += "%";
+
+            } else {
+                //there isn't exams finished. So, any student failure yet
+                percetageTxt = "0.0%";
+            }
+
+        } else {
+            //there isn't students in this class
+            percetageTxt = "0.0%";
+        }
+        return percetageTxt;
+    }
+
+    public String getPrctOfFailure(ClassModel classToVerify) {
+        String percetageTxt = "";
+
+        if (!classToVerify.getFinishedExams().isEmpty()) {
+            int cont = 0;
+            if (classToVerify.getCalcType() == 1) {
+                //normal averange calc
+                for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
+                    float studentAverange = normalAverangeCalc(classToVerify.getStudentsList().get(i), classToVerify);
+                    if (studentAverange < classToVerify.getMinimumrAverange()) {
+                        //the student is not approved yet
+                        cont++;
+                    }
+                }
+
+            } else {
+                //weighted averange calc
+                for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
+                    float studentAverange = weightedAverangeCalc(classToVerify.getStudentsList().get(i), classToVerify);
+                    if (studentAverange < classToVerify.getMinimumrAverange()) {
+                        //the student is not approved yet
+                        cont++;
+                    }
+                }
+
+            }
+
+            float prctOfApprovement = (100 * cont) / classToVerify.getStudentsList().size();
+            DecimalFormat formatter = new DecimalFormat("0.0");
+            percetageTxt = formatter.format(prctOfApprovement);
+            percetageTxt += "%";
+
+        } else {
+            //there isn't exams finished. So, any student failure yet
+            percetageTxt = "0.0%";
+        }
+
+        return percetageTxt;
+    }
+
+    public String getNumExamFinished(ClassModel classToVerify) {
+        String numOfFinishedExamsTxt = "";
+
+        numOfFinishedExamsTxt = String.valueOf(classToVerify.getFinishedExams().size());
+
+        return numOfFinishedExamsTxt;
+    }
+
+    public String getNumOfExams(ClassModel classToVerify) {
+        String numOfExamsTxt = "0";
+
+        int numOfExamsInt = classToVerify.getExamList().size() + classToVerify.getFinishedExams().size();
+
+        numOfExamsTxt = String.valueOf(numOfExamsInt);
+
+        return numOfExamsTxt;
+    }
+
+    public String getClassTeacherName(ClassModel classToVerify) {
+        return classToVerify.getTeacher().getName();
+    }
+
+    public String getClassSubject(ClassModel classToVerify) {
+        return classToVerify.getSubject();
+    }
+
+    public String getTotalAverange(StudentModel student, ClassModel classModel) {
+        String totalAverangeTxt = "";
+        float sumGrades = 0;
+        float totalAverange = 0;
+
+        for (int i = 0; i < student.getStudentExams().size(); i++) {
+            if (student.getStudentExams().get(i).getClassCorresponding().getName().equals(classModel.getName())) {
+                sumGrades += student.getExamsScoresArray().get(i);
+            }
+        }
+
+        totalAverange = sumGrades / classModel.getTotalOfExams();
+        totalAverangeTxt = String.valueOf(totalAverange);
+
+        return totalAverangeTxt;
+    }
+
+    public String getClassAverange(ClassModel classModel) {
+        float sumGrades = 0;
+        float totalClassAverange = 0;
+        String totalClassAverangeTxt = "";
+
+        for (int i = 0; i < classModel.getStudentsList().size(); i++) {
+            for (int j = 0; j < classModel.getStudentsList().get(i).getStudentExams().size(); j++) {
+
+                if (classModel.getStudentsList().get(i).getStudentExams().get(j).getClassCorresponding().getName().equals(classModel.getName())) {
+                    sumGrades += classModel.getStudentsList().get(i).getExamsScoresArray().get(j);
+                }
+
+            }
+        }
+        System.out.println("Soma das notas: " + sumGrades);
+        DecimalFormat formatter = new DecimalFormat("0.0");
+        totalClassAverange = sumGrades / classModel.getFinishedExams().size();
+        System.out.println("Media total da sala: " + totalClassAverange);
+        totalClassAverangeTxt = String.valueOf(formatter.format(totalClassAverange));
+
+        return totalClassAverangeTxt;
+    }
+
+    public String getNumberOfRightAnswers(ExamModel exam, StudentModel student) {
+        String numberOfRightAnswers = "";
+        for (int i = 0; i < student.getStudentExams().size(); i++) {
+
+            if (exam.getId() == student.getStudentExams().get(i).getId()) {
+                numberOfRightAnswers = String.valueOf(student.getNumberOfRightAnwsArray().get(i));
+            }
+
+        }
+
+        return numberOfRightAnswers;
+    }
+
+    public String getNumberOfWrongAnswers(ExamModel exam, StudentModel student) {
+        String numberOfWrongAnswers = "0";
+        int numOfWrongAnswersInt = 0;
+
+        for (int i = 0; i < student.getStudentExams().size(); i++) {
+            if (exam.getId() == student.getStudentExams().get(i).getId()) {
+                numOfWrongAnswersInt = exam.getNumOfQuestions() - student.getNumberOfRightAnwsArray().get(i);
+            }
+        }
+
+        numberOfWrongAnswers = String.valueOf(numOfWrongAnswersInt);
+        return numberOfWrongAnswers;
+    }
+
+    public String getTotalSquore(ExamModel exam, StudentModel student) {
+        String totalSquoreTxt = "0";
+
+        for (int i = 0; i < student.getStudentExams().size(); i++) {
+            if (exam.getId() == student.getStudentExams().get(i).getId()) {
+                totalSquoreTxt = String.valueOf(student.getExamsScoresArray().get(i));
+            }
+        }
+
+        System.out.println(totalSquoreTxt);
+        return totalSquoreTxt;
     }
 
     //====> Test Methods
@@ -708,10 +982,83 @@ public class Controller {
             System.out.println("Aluno: " + classModel.getStudentsList().get(i).getName());
             System.out.println("Notas: ");
             System.out.print("{");
-            for (int j = 0; j < classModel.getStudentsList().get(i).getExamsGrades().size(); j++) {
-                System.out.println(classModel.getStudentsList().get(i).getExamsGrades().get(i) + ", ");
+            for (int j = 0; j < classModel.getStudentsList().get(i).getStudentExams().size(); j++) {
+                System.out.println(classModel.getStudentsList().get(i).getStudentExams().get(i) + ", ");
             }
             System.out.println("}");
         }
     }
+
+    public void showSituationInClass(ClassModel classModel, StudentModel student) {
+
+        for (int i = 0; i < student.getClassesList().size(); i++) {
+            if (student.getClassesList().get(i).getName().equals(classModel.getName())) {
+                System.out.println("Situacao do aluno " + student.getName() + " na classe " + student.getClassesList().get(i).getName() + ": "
+                        + student.getClassesSituation(i));
+            }
+        }
+
+    }
+
+    public void showScores(ClassModel classToVerify, ExamModel exam) {
+
+        for (int i = 0; i < classToVerify.getStudentsList().size(); i++) {
+
+            for (int j = 0; j < classToVerify.getStudentsList().get(i).getStudentExams().size(); j++) {
+                if (classToVerify.getStudentsList().get(i).getStudentExams().get(j).getId() == exam.getId()) {
+                    System.out.println("Aluno: " + classToVerify.getStudentsList().get(i).getName());
+                    System.out.println("Nota no " + classToVerify.getStudentsList().get(i).getStudentExams().get(j).getName() + ": " + classToVerify.getStudentsList().get(i).getExamsScoresArray().get(j));
+                }
+            }
+
+        }
+
+    }
+
+    public void showIds(ClassModel classToVerify) {
+
+        for (int i = 0; i < classToVerify.getExamList().size(); i++) {
+            System.out.println("Id do(a) " + classToVerify.getExamList().get(i).getName() + ": " + classToVerify.getExamList().get(i).getId());
+        }
+
+        for (int i = 0; i < classToVerify.getFinishedExams().size(); i++) {
+            System.out.println("Id do(a) " + classToVerify.getFinishedExams().get(i).getName() + ": " + classToVerify.getFinishedExams().get(i).getId());
+        }
+
+    }
+
+    @Override
+    public float normalAverangeCalc(StudentModel student, ClassModel classToCalc) {
+        int sumOfGrades = 0;
+
+        for (int i = 0; i < student.getStudentExams().size(); i++) {
+            if (student.getStudentExams().get(i).getClassCorresponding().getName().equals(classToCalc.getName())) {
+                sumOfGrades += student.getExamsScoresArray().get(i);
+            }
+        }
+
+        float averange = sumOfGrades / student.getStudentExams().size();
+
+        return averange;
+    }
+
+    @Override
+    public float weightedAverangeCalc(StudentModel student, ClassModel classToCalc) {
+        float sumOfGrades = 0;
+        float sumOfWeight = 0;
+
+        for (int i = 0; i < student.getStudentExams().size(); i++) {
+            if (student.getStudentExams().get(i).getClassCorresponding().getName().equals(classToCalc.getName())) {
+
+                sumOfGrades += student.getExamsScoresArray().get(i) * student.getStudentExams().get(i).getWeight();
+                sumOfWeight += student.getStudentExams().get(i).getWeight();
+            }
+        }
+
+        float averange = sumOfGrades / sumOfWeight;
+
+        return averange;
+    }
+
+
 }

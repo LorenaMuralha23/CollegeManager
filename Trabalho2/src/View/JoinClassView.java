@@ -1,5 +1,6 @@
 package View;
 
+import Model.ClassModel;
 import Model.Main;
 import Model.TeacherModel;
 import Model.UserModel;
@@ -7,12 +8,14 @@ import javax.swing.JOptionPane;
 
 public class JoinClassView extends javax.swing.JPanel {
 
+    ClassModel classSelected;
+    
     public JoinClassView() {
         initComponents();
+        classSelected = null;
         startComboBox();
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -29,19 +32,19 @@ public class JoinClassView extends javax.swing.JPanel {
         loginLabel4 = new javax.swing.JLabel();
         statisticPanel = new javax.swing.JPanel();
         subtitleLabel2 = new javax.swing.JLabel();
-        subtitleLabel3 = new javax.swing.JLabel();
+        numberOfStudentsLabel = new javax.swing.JLabel();
         subtitleLabel4 = new javax.swing.JLabel();
         statisticPanel1 = new javax.swing.JPanel();
         subtitleLabel14 = new javax.swing.JLabel();
-        subtitleLabel15 = new javax.swing.JLabel();
+        numberOfExamsLabel = new javax.swing.JLabel();
         subtitleLabel16 = new javax.swing.JLabel();
         statisticPanel2 = new javax.swing.JPanel();
         subtitleLabel8 = new javax.swing.JLabel();
-        subtitleLabel9 = new javax.swing.JLabel();
+        subjectLabel = new javax.swing.JLabel();
         statisticPanel3 = new javax.swing.JPanel();
         subtitleLabel11 = new javax.swing.JLabel();
-        subtitleLabel12 = new javax.swing.JLabel();
         subtitleLabel13 = new javax.swing.JLabel();
+        teacherNameLabel = new javax.swing.JLabel();
 
         MainPanel.setBackground(new java.awt.Color(241, 234, 255));
 
@@ -100,6 +103,11 @@ public class JoinClassView extends javax.swing.JPanel {
         classesComboBox.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         classesComboBox.setForeground(new java.awt.Color(255, 255, 255));
         classesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Class 1", "Class 2", "Class 3", "Class 4" }));
+        classesComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                classesComboBoxItemStateChanged(evt);
+            }
+        });
 
         loginLabel4.setFont(new java.awt.Font("Arial", 0, 44)); // NOI18N
         loginLabel4.setForeground(new java.awt.Color(42, 8, 69));
@@ -113,10 +121,10 @@ public class JoinClassView extends javax.swing.JPanel {
         subtitleLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         subtitleLabel2.setText("Number of students in this class:");
 
-        subtitleLabel3.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
-        subtitleLabel3.setForeground(new java.awt.Color(42, 8, 69));
-        subtitleLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        subtitleLabel3.setText("19");
+        numberOfStudentsLabel.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
+        numberOfStudentsLabel.setForeground(new java.awt.Color(42, 8, 69));
+        numberOfStudentsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        numberOfStudentsLabel.setText("0");
 
         subtitleLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         subtitleLabel4.setForeground(new java.awt.Color(42, 8, 69));
@@ -134,7 +142,7 @@ public class JoinClassView extends javax.swing.JPanel {
                         .addComponent(subtitleLabel2))
                     .addGroup(statisticPanelLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addComponent(subtitleLabel3)
+                        .addComponent(numberOfStudentsLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(subtitleLabel4)))
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -146,7 +154,7 @@ public class JoinClassView extends javax.swing.JPanel {
                 .addComponent(subtitleLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(statisticPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(subtitleLabel3)
+                    .addComponent(numberOfStudentsLabel)
                     .addGroup(statisticPanelLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(subtitleLabel4)))
@@ -161,10 +169,10 @@ public class JoinClassView extends javax.swing.JPanel {
         subtitleLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         subtitleLabel14.setText("Number of exams in this subject:");
 
-        subtitleLabel15.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
-        subtitleLabel15.setForeground(new java.awt.Color(42, 8, 69));
-        subtitleLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        subtitleLabel15.setText("3");
+        numberOfExamsLabel.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
+        numberOfExamsLabel.setForeground(new java.awt.Color(42, 8, 69));
+        numberOfExamsLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        numberOfExamsLabel.setText("0");
 
         subtitleLabel16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         subtitleLabel16.setForeground(new java.awt.Color(42, 8, 69));
@@ -182,7 +190,7 @@ public class JoinClassView extends javax.swing.JPanel {
                         .addComponent(subtitleLabel14))
                     .addGroup(statisticPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(subtitleLabel15)
+                        .addComponent(numberOfExamsLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(subtitleLabel16)))
                 .addContainerGap(81, Short.MAX_VALUE))
@@ -194,7 +202,7 @@ public class JoinClassView extends javax.swing.JPanel {
                 .addComponent(subtitleLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(statisticPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(subtitleLabel15)
+                    .addComponent(numberOfExamsLabel)
                     .addGroup(statisticPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(subtitleLabel16)))
@@ -209,24 +217,20 @@ public class JoinClassView extends javax.swing.JPanel {
         subtitleLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         subtitleLabel8.setText("Subject:");
 
-        subtitleLabel9.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
-        subtitleLabel9.setForeground(new java.awt.Color(42, 8, 69));
-        subtitleLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        subtitleLabel9.setText("Math");
+        subjectLabel.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
+        subjectLabel.setForeground(new java.awt.Color(42, 8, 69));
+        subjectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        subjectLabel.setText("xxxxx");
 
         javax.swing.GroupLayout statisticPanel2Layout = new javax.swing.GroupLayout(statisticPanel2);
         statisticPanel2.setLayout(statisticPanel2Layout);
         statisticPanel2Layout.setHorizontalGroup(
             statisticPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statisticPanel2Layout.createSequentialGroup()
-                .addGroup(statisticPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(statisticPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(subtitleLabel8))
-                    .addGroup(statisticPanel2Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(subtitleLabel9)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(subtitleLabel8)
+                .addContainerGap(291, Short.MAX_VALUE))
+            .addComponent(subjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         statisticPanel2Layout.setVerticalGroup(
             statisticPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +238,7 @@ public class JoinClassView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(subtitleLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(subtitleLabel9)
+                .addComponent(subjectLabel)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -246,29 +250,30 @@ public class JoinClassView extends javax.swing.JPanel {
         subtitleLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         subtitleLabel11.setText("Teacher:");
 
-        subtitleLabel12.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
-        subtitleLabel12.setForeground(new java.awt.Color(42, 8, 69));
-        subtitleLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        subtitleLabel12.setText("Andrew");
-
         subtitleLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         subtitleLabel13.setForeground(new java.awt.Color(42, 8, 69));
         subtitleLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        teacherNameLabel.setFont(new java.awt.Font("Arial", 0, 52)); // NOI18N
+        teacherNameLabel.setForeground(new java.awt.Color(42, 8, 69));
+        teacherNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        teacherNameLabel.setText("XXXXX");
 
         javax.swing.GroupLayout statisticPanel3Layout = new javax.swing.GroupLayout(statisticPanel3);
         statisticPanel3.setLayout(statisticPanel3Layout);
         statisticPanel3Layout.setHorizontalGroup(
             statisticPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statisticPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(subtitleLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statisticPanel3Layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
-                .addComponent(subtitleLabel12)
-                .addGap(18, 18, 18)
-                .addComponent(subtitleLabel13)
-                .addGap(70, 70, 70))
+                .addGap(15, 15, 15)
+                .addGroup(statisticPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(statisticPanel3Layout.createSequentialGroup()
+                        .addComponent(subtitleLabel11)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(statisticPanel3Layout.createSequentialGroup()
+                        .addComponent(teacherNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(subtitleLabel13)
+                        .addGap(70, 70, 70))))
         );
         statisticPanel3Layout.setVerticalGroup(
             statisticPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +286,7 @@ public class JoinClassView extends javax.swing.JPanel {
                         .addComponent(subtitleLabel13))
                     .addGroup(statisticPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(subtitleLabel12)))
+                        .addComponent(teacherNameLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -388,6 +393,13 @@ public class JoinClassView extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Joining canceled!", "Operation Canceled", HEIGHT);
         }
     }//GEN-LAST:event_joinClassBtnMouseClicked
+
+    private void classesComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_classesComboBoxItemStateChanged
+        if(classesComboBox.getSelectedIndex() != -1){
+            classSelected = Main.controller.findClassByName(classesComboBox.getSelectedItem().toString());
+            startDashBoardInfo();
+        }
+    }//GEN-LAST:event_classesComboBoxItemStateChanged
     
     public void startComboBox(){
         UserModel userLogged = Main.controller.getUserLogged();
@@ -404,6 +416,23 @@ public class JoinClassView extends javax.swing.JPanel {
         }
     }
 
+    public void startDashBoardInfo(){
+        
+        if(classSelected != null){
+            numberOfStudentsLabel.setText(Main.controller.getNumberOfStudents(classSelected));
+            numberOfExamsLabel.setText(Main.controller.getNumOfExams(classSelected));
+            teacherNameLabel.setText(Main.controller.getClassTeacherName(classSelected));
+            subjectLabel.setText(Main.controller.getClassSubject(classSelected));
+        }else{
+            numberOfStudentsLabel.setText("0");
+            numberOfExamsLabel.setText("0");
+            teacherNameLabel.setText("XXXXX");
+            subjectLabel.setText("XXXX");
+        }
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel SideMenuPanel;
@@ -413,22 +442,22 @@ public class JoinClassView extends javax.swing.JPanel {
     private javax.swing.JButton joinClassBtn;
     private javax.swing.JLabel loginLabel3;
     private javax.swing.JLabel loginLabel4;
+    private javax.swing.JLabel numberOfExamsLabel;
+    private javax.swing.JLabel numberOfStudentsLabel;
     private javax.swing.JLabel sideMenuLabel;
     private javax.swing.JPanel statisticPanel;
     private javax.swing.JPanel statisticPanel1;
     private javax.swing.JPanel statisticPanel2;
     private javax.swing.JPanel statisticPanel3;
+    private javax.swing.JLabel subjectLabel;
     private javax.swing.JLabel subtitleLabel;
     private javax.swing.JLabel subtitleLabel11;
-    private javax.swing.JLabel subtitleLabel12;
     private javax.swing.JLabel subtitleLabel13;
     private javax.swing.JLabel subtitleLabel14;
-    private javax.swing.JLabel subtitleLabel15;
     private javax.swing.JLabel subtitleLabel16;
     private javax.swing.JLabel subtitleLabel2;
-    private javax.swing.JLabel subtitleLabel3;
     private javax.swing.JLabel subtitleLabel4;
     private javax.swing.JLabel subtitleLabel8;
-    private javax.swing.JLabel subtitleLabel9;
+    private javax.swing.JLabel teacherNameLabel;
     // End of variables declaration//GEN-END:variables
 }

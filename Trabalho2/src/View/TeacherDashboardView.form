@@ -91,12 +91,12 @@
                                   <Component id="addClassBtn" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="statisticPanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                                  <Component id="statisticPanel" linkSize="1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                                   <Component id="statisticPanel1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="statisticPanel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="statisticPanel3" linkSize="1" min="-2" pref="365" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="statisticPanel2" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -235,6 +235,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="classesComboBoxItemStateChanged"/>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="classesComboBoxMouseClicked"/>
           </Events>
           <AuxValues>
@@ -271,12 +272,12 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="subtitleLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="numOfStudentsLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="subtitleLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="69" max="32767" attributes="0"/>
+                      <EmptySpace pref="80" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -287,7 +288,7 @@
                       <Component id="subtitleLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="subtitleLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="numOfStudentsLabel" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="subtitleLabel4" min="-2" max="-2" attributes="0"/>
@@ -311,7 +312,7 @@
                 <Property name="text" type="java.lang.String" value="Number of students in this class:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel3">
+            <Component class="javax.swing.JLabel" name="numOfStudentsLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -357,7 +358,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="78" max="32767" attributes="0"/>
-                      <Component id="subtitleLabel6" min="-2" max="-2" attributes="0"/>
+                      <Component id="prctOfAppLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
@@ -371,7 +372,7 @@
                       <Component id="subtitleLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="subtitleLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="prctOfAppLabel" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="subtitleLabel7" min="-2" max="-2" attributes="0"/>
@@ -395,7 +396,7 @@
                 <Property name="text" type="java.lang.String" value="Percentage of approvement in this class:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel6">
+            <Component class="javax.swing.JLabel" name="prctOfAppLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -442,7 +443,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                              <Component id="subtitleLabel9" min="-2" max="-2" attributes="0"/>
+                              <Component id="numExamsLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="subtitleLabel10" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -458,7 +459,7 @@
                       <Component id="subtitleLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="subtitleLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="numExamsLabel" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="subtitleLabel10" min="-2" max="-2" attributes="0"/>
@@ -482,7 +483,7 @@
                 <Property name="text" type="java.lang.String" value="Number of exams in this subject:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel9">
+            <Component class="javax.swing.JLabel" name="numExamsLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -524,14 +525,14 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="129" max="32767" attributes="0"/>
+                      <EmptySpace pref="140" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="subtitleLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="prctOfFailureLabeç" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="subtitleLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -540,15 +541,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="subtitleLabel11" min="-2" pref="17" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="subtitleLabel12" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="prctOfFailureLabeç" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="subtitleLabel13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -566,7 +569,7 @@
                 <Property name="text" type="java.lang.String" value="Percentage of failure in this class:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="subtitleLabel12">
+            <Component class="javax.swing.JLabel" name="prctOfFailureLabe&#xe7;">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="52" style="0"/>
@@ -587,7 +590,7 @@
                   <Color blue="45" green="8" red="2a" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="of approvement"/>
+                <Property name="text" type="java.lang.String" value="of failure"/>
               </Properties>
             </Component>
           </SubComponents>
